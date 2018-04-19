@@ -41,10 +41,6 @@ $GOPATH/bin/grpcwebproxy
 
 ```
 $GOPATH/bin/grpcwebproxy
-    --server_tls_cert_file=../../misc/localhost.crt \
-    --server_tls_key_file=../../misc/localhost.key \
-    --backend_addr=localhost:9090 \
-    --backend_tls_noverify
     --server_http_max_write_timeout=0s
     --server_http_max_read_timeout=0s
     --server_http_max_read_header_timeout=10s

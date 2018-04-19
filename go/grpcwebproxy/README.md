@@ -35,6 +35,22 @@ $GOPATH/bin/grpcwebproxy
     --backend_tls_noverify
 ```
 
+### Long running server side streaming
+
+@see https://github.com/golang/go/issues/16100
+
+```
+$GOPATH/bin/grpcwebproxy
+    --server_tls_cert_file=../../misc/localhost.crt \
+    --server_tls_key_file=../../misc/localhost.key \
+    --backend_addr=localhost:9090 \
+    --backend_tls_noverify
+    --server_http_max_write_timeout=0s
+    --server_http_max_read_timeout=0s
+    --server_http_max_read_header_timeout=10s
+    --server_http_max_idle_timeout=30s
+```
+
 ### Running specific servers
 
 By default, grpcwebproxy will run both TLS and HTTP debug servers. To disable either one, set the `--run_http_server` or `--run_tls_server` flags to false.

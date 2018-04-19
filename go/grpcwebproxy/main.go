@@ -36,6 +36,8 @@ var (
 
 	flagHttpMaxWriteTimeout = pflag.Duration("server_http_max_write_timeout", 10*time.Second, "HTTP server config, max write duration.")
 	flagHttpMaxReadTimeout  = pflag.Duration("server_http_max_read_timeout", 10*time.Second, "HTTP server config, max read duration.")
+	flagHttpMaxReadHeaderTimeout  = pflag.Duration("server_http_max_read_header_timeout", 10*time.Second, "@see https://golang.org/pkg/net/http/#Server")
+	flagHttpMaxIdleTimeout  = pflag.Duration("server_http_max_idle_timeout", 10*time.Second, "@see https://golang.org/pkg/net/http/#Server")
 )
 
 func main() {
@@ -79,6 +81,8 @@ func buildServer(wrappedGrpc *grpcweb.WrappedGrpcServer) *http.Server {
 	return &http.Server{
 		WriteTimeout: *flagHttpMaxWriteTimeout,
 		ReadTimeout:  *flagHttpMaxReadTimeout,
+		ReadHeaderTimeout: *flagHttpMaxReadHeaderTimeout,
+        	IdleTimeout: *flagHttpMaxIdleTimeout,
 		Handler: http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
 			wrappedGrpc.ServeHTTP(resp, req)
 		}),

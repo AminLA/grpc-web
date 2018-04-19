@@ -43,8 +43,6 @@ $GOPATH/bin/grpcwebproxy
 $GOPATH/bin/grpcwebproxy
     --server_http_max_write_timeout=0s
     --server_http_max_read_timeout=0s
-    --server_http_max_read_header_timeout=10s
-    --server_http_max_idle_timeout=30s
 ```
 
 ### Running specific servers
